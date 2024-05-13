@@ -1,0 +1,47 @@
+Help with input: {{ input }}
+================={{ "=" * input|length }}
+
+{% for cmd in commands -%}
+{% if cmd.doc_headline != '' -%}
+{{ cmd.doc_headline }}
+{{ "=" * cmd.doc_headline|length }}
+{% endif %}
+{{ cmd.commandname }}
+|  {{ cmd.help }}
+|  {{ cmd.node_type }} Node
+{% if cmd.default_value -%}
+|  Default: {{ cmd.default_value }}
+{% endif -%}
+{% if cmd.multivalue %}
+|  multivalue command
+{% endif -%}
+{% if cmd.valueless %}
+|  valueless command
+{% endif -%}
+{% if cmd.secret %}
+|  value is a secret
+{% endif -%}
+{% if cmd.value_help != [] -%}
+|  Value help:
+{% for value, help in cmd.value_help -%}
+|    {{ value }}:{{"\t"}}{{ help }}
+{% endfor -%}
+{% endif -%}
+{% if cmd.node_type != "other" -%}
+|  constraint error message: {{ cmd.constraint_error_message }}
+{% endif %}
+{% if cmd.doc_text != "" %}
+{{ cmd.doc_text }}
+{% endif -%}
+{% if cmd.doc_hints != "" %}
+Importand Hint:
+{{ cmd.doc_hints }}
+{% endif -%}
+{% if cmd.doc_codeexample != "" %}
+Code Example:
+{%- for line in cmd.doc_codeexample.split('\n') %}
+  {{ line }}
+{%- endfor -%}
+{% endif -%}
+
+{% endfor %}

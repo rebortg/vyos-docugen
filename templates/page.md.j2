@@ -1,0 +1,9 @@
+{% for cmd in commands -%}
+.. cfg_cmd:: {{ cmd.commandname }}
+
+help: {{ cmd.help }}
+{%- if cmd.default_value %}
+{{ cmd.default_value }}
+{% endif %}
+
+{% endfor %}
