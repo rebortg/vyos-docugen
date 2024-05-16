@@ -2,9 +2,9 @@ Help with input: {{ input }}
 ================={{ "=" * input|length }}
 
 {% for cmd in commands -%}
-{% if cmd.doc_headline != '' -%}
-{{ cmd.doc_headline }}
-{{ "=" * cmd.doc_headline|length }}
+{% if cmd.docs.headline != '' -%}
+{{ cmd.docs.headline }}
+{{ "=" * cmd.docs.headline|length }}
 {% endif %}
 {{ cmd.commandname }}
 |  {{ cmd.help }}
@@ -30,16 +30,16 @@ Help with input: {{ input }}
 {% if cmd.node_type != "other" -%}
 |  constraint error message: {{ cmd.constraint_error_message }}
 {% endif %}
-{% if cmd.doc_text != "" %}
-{{ cmd.doc_text }}
+{% if cmd.docs.text != "" %}
+{{ cmd.docs.text }}
 {% endif -%}
-{% if cmd.doc_hints != "" %}
+{% if cmd.docs.hints != "" %}
 Importand Hint:
-{{ cmd.doc_hints }}
+{{ cmd.docs.hints }}
 {% endif -%}
-{% if cmd.doc_codeexample != "" %}
+{% if cmd.docs.codeexample != "" %}
 Code Example:
-{%- for line in cmd.doc_codeexample.split('\n') %}
+{%- for line in cmd.docs.codeexample.split('\n') %}
   {{ line }}
 {%- endfor -%}
 {% endif -%}
